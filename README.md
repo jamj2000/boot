@@ -30,3 +30,4 @@ qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/d
 ## Referencias 
 
 - https://wiki.archlinux.org/index.php/QEMU 
+- https://wiki.gentoo.org/wiki/QEMU/Options
