@@ -24,6 +24,24 @@ qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/d
 - `-drive format=raw,file=/dev/sdb,cache=none,if=virtio` formato raw para /dev/sdb (nuestro pendrive arrancable). Sin cache, para poder modificar el contenido del USB y lanzar qemu con los nuevos cambios.
 
 
+## Instalación de sistemas operativos desde ISO o USB arrancable
+
+Para simular las instalación desde una ISO o un USB arrancable necesitaremos un disco duro. En este caso crearemos un disco duro con formato `qcow2`, aunque qemu admite muchos otros formatos (ver referencias) incluidos `vdi` y `vmdk`, compatibles con VirtualBox y VMWare.
+
+```
+qemu-img create  -f  qcow2  disco_duro.img  20G
+```
+
+Ahora solo tenemos que realizar el inicio desde ISO o USB que pusimos al principio y añadir la opción `-hda  disco_duro.img`. Se pueden añadir hasta 4 discos duros con `-hdb  ...`, `-hdc  ...` y `-hdd  ...`.
+
+Por ejemplo para iniciar desde USB arrancable con disco duro virtual:
+
+```
+qemu-system-x86_64 -hda disco_duro.img -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/dev/sdb,cache=none,if=virtio  -m 2048 -usb -device usb-tablet
+```
+
+Con esto ya tenemos un entorno completamente funcional para realizar pruebas de la forma más parecida a un entorno real.
+
 
 ## Referencias 
 
