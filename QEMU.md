@@ -12,6 +12,11 @@ qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm  -cdrom lubuntu-14.04-desk
 - `-m 2048`  para reservar memoria RAM (si no indicamos nada puede que la máquina no inicie)
 - `-usb -device usb-tablet` para evitar la captura del puntero del ratón por parte de la máquina virtual. Si no establecemos esta opción, deberemos pulsar `Ctrl+Alt` para devolver el puntero del ratón al anfitrión.
 
+En lugar de una ISO, también es posible realizar el inicio desde un CD o DVD físico usando alguna de las siguientes opciones:
+
+- `-cdrom  /dev/cdrom` 
+- `-cdrom  /dev/dvd`
+- `-cdrom  /dev/sr0`
 
 ## Inicio de USB arrancable
 
