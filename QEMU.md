@@ -42,8 +42,13 @@ Ahora solo tenemos que realizar el inicio desde ISO o USB que pusimos al princip
 Por ejemplo para iniciar desde USB arrancable con disco duro virtual:
 
 ```
-qemu-system-x86_64 -hda disco_duro.img -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/dev/sdb,cache=none,if=virtio  -m 2048 -usb -device usb-tablet
+qemu-system-x86_64 -hda disco_duro.img -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/dev/sdb,cache=none,if=virtio  -m 2048 -usb -device usb-tablet -boot menu=on
 ```
+
+La opción `-boot menu=on` nos muestra un menu de inicio al pulsar `F12`y evita que inicie desde `-hda`. Debemos seleccionar `2. Virtio disk ...`.
+
+![qemu boot menu](screenshots/qemu-boot-menu.png)
+
 
 Con esto ya tenemos un entorno completamente funcional para realizar pruebas de la forma más parecida a un entorno real.
 
