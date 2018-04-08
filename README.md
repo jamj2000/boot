@@ -25,14 +25,15 @@
 qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -drive format=raw,file=/dev/sdb,cache=none,if=virtio  -m 2048 -usb -device usb-tablet
 ```
 
-10. A continuación se muestra el proceso para ejecutar la ISO de Windows 7. Los pasos son `Syslinux`->`GRUB2`->`Windows ISO`. 
+10. A continuación se muestra el proceso para ejecutar la ISO de Clonezilla. Los pasos son `Syslinux`->`Iniciar GRUB2`->`Clonezilla`. 
 
- ![Inicio de Syslinux](screenshots/qemu-multibootusb.png)
+ ![Inicio de GRUB2](screenshots/qemu-multibootusb-init-grub2.png)
  
- ![Inicio de GRUB2](screenshots/qemu-multibootusb-grub2.png)
+ ![Inicio de Windows ISO](screenshots/qemu-multibootusb-init-grub2-clonezilla.png)
  
- ![Inicio de Windows ISO](screenshots/qemu-multibootusb-windows7.png)
- 
+11. En caso de tener instalado en disco duro el sistema de recuperación Clonezilla podemos acceder a él mediante `Syslinux`->`Iniciar desde Disco Duro`. [Instrucciones de como instalar Clonezilla en disco duro](CLONEZILLA.md)
 
-
+ ![Inicio de GRUB2](screenshots/qemu-multibootusb-init-disco.png)
+ 
+ ![Inicio de Windows ISO](screenshots/clonezilla.png)
 
