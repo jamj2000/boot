@@ -6,10 +6,9 @@ A continuación se muestran los pasos para crear un sistema de restauración/clo
 
 ## ¿Qué necesitamos?
 
--Un disco duro con espacio libre para crear 2 particiones:
+- Un disco duro con espacio libre para crear 2 particiones:
   - Una de 1 GB para Clonezilla
   - Una de 30 a 50 GB para guardar las imágenes (de Windows y/o Linux)
-  
 - [Descargar la versión estable en formato .zip de Clonezilla](http://clonezilla.org/downloads/download.php?branch=stable)
 - Archivos para GRUB2.
   - [El archivo de configuración de GRUB2](clonezilla/grub.cfg)
