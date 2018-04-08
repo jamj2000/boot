@@ -2,11 +2,9 @@ Pasos a seguir para instalar Clonezilla en el disco duro
 ========================================================
 
 
-1. Iniciar USB de Clonezilla Live. Tiene 2 particiones:
-    - sdb1 (MULTIBOOT)
-    - sdb2 (DATA)
+1. Iniciar CDLive de Clonezilla Live.
 
-2. Montar partición que va a contener Clonezilla.
+2. Montar partición que va a contener Clonezilla. En el ejemplo es `/dev/sda4`.
 
 ```bash
 sudo su
@@ -16,7 +14,7 @@ mount  /dev/sda4  /mnt
 3. Copiar archivos de Clonezilla
 
 ```bash
-cp -r /lib/live/mount/medium/*  /mnt
+cp  -r  /lib/live/mount/medium/*  /mnt
 ```
 
 4. Cambiar nombre /mnt/live a /mnt/live-hd
@@ -25,13 +23,13 @@ cp -r /lib/live/mount/medium/*  /mnt
 mv  /mnt/live  /mnt/live-hd
 ```
 
-5. Montar sdb2, la cual tiene los archivos de configuración
+5. Montar en `/media` el pendrive con los archivos de configuración. En el ejemplo `/dev/sdb1`.
 
 ```bash
-mount /dev/sdb2 /media
+mount  /dev/sdb1  /media
 ```
 
-6. Copiar archivos `/media/grub.cfg` y `/media/bg.png` a /mnt/EFI/boot
+6. Copiar archivos `/media/grub.cfg` y `/media/bg.png` a `/mnt/EFI/boot`.
  
 ```bash
 cd  /mnt/EFI/boot
