@@ -14,7 +14,7 @@ EFI/*
 multibootusb/*
 ```
 A mí no me ha funcionado, así que un truco es pulsar en la pestaña `MultiBootUSB` y luego instalar una distro de poco peso, por ejemplo la iso de clonezilla. Para ello seleccionamos la imagen .iso y pulsamos en `Install distro` y esperamos un ratito.
-Una vez finalizado, comprobamos que nos ha creado las carpetas anteriores. También nos habrá creado una carpeta `/multibootusb/clonezilla`. Para liberar este espacio, es aconsejable desinstalar la distro previamente instalada pulsando en el botón `Uninstall distro`. Es una técnica un poco tonta pero consigue lo que queremos.
+Una vez finalizado, comprobamos que nos ha creado las carpetas anteriores. También nos habrá creado una carpeta `/multibootusb/clonezilla`. Para liberar este espacio, es aconsejable desinstalar la distro previamente instalada pulsando en el botón `Uninstall distro`. Es una técnica un poco tonta pero consigue lo que queremos. Si no se elimina la carpeta `/multibootusb/clonezilla` entonces lo haremos a mano.
 
  ![MultiBootUSB install distro](screenshots/multibootusb-install-distro.png)
 
