@@ -2,7 +2,7 @@ Pasos a seguir para instalar Clonezilla en el disco duro
 ========================================================
 
 
-1. Iniciar CDLive de Clonezilla Live.
+1. Iniciar CDLive de Clonezilla.
 
 2. Montar partición que va a contener Clonezilla. En el ejemplo es `/dev/sda4`.
 
