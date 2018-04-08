@@ -17,7 +17,7 @@ mount  /dev/sda4  /mnt
 cp  -r  /lib/live/mount/medium/*  /mnt
 ```
 
-4. Cambiar nombre /mnt/live a /mnt/live-hd
+4. Cambiar nombre `/mnt/live` a `/mnt/live-hd`
 
 ```bash
 mv  /mnt/live  /mnt/live-hd
