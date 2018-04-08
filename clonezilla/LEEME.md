@@ -29,7 +29,7 @@ mv  /mnt/live  /mnt/live-hd
 mount  /dev/sdb1  /media
 ```
 
-6. Copiar archivos `/media/grub.cfg` y `/media/bg.png` a `/mnt/EFI/boot`.
+6. Copiar archivos `/media/`[`grub.cfg`](grub.cfg) y `/media/bg.png` a `/mnt/EFI/boot`.
  
 ```bash
 cd  /mnt/EFI/boot
