@@ -34,15 +34,15 @@ qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/d
 Para simular las instalación desde una ISO o un USB arrancable necesitaremos un disco duro. En este caso crearemos un disco duro con formato `qcow2`, aunque qemu admite muchos otros formatos (ver referencias) incluidos `vdi` y `vmdk`, compatibles con VirtualBox y VMWare.
 
 ```
-qemu-img create  -f  qcow2  disco_duro.img  20G
+qemu-img create  -f  qcow2  disco.img  20G
 ```
 
-Ahora solo tenemos que realizar el inicio desde ISO o USB que pusimos al principio y añadir la opción `-hda  disco_duro.img`. Se pueden añadir hasta 4 discos duros con `-hdb  ...`, `-hdc  ...` y `-hdd  ...`.
+Ahora solo tenemos que realizar el inicio desde ISO o USB que pusimos al principio y añadir la opción `-hda  disco.img`. Se pueden añadir hasta 4 discos duros con `-hdb  ...`, `-hdc  ...` y `-hdd  ...`.
 
 Por ejemplo para iniciar desde USB arrancable con disco duro virtual:
 
 ```
-qemu-system-x86_64 -boot menu=on -hda disco_duro.img -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/dev/sdb,cache=none,if=virtio  -m 2048 -usb -device usb-tablet
+qemu-system-x86_64 -boot menu=on -hda disco.img -enable-kvm -machine q35,accel=kvm  -drive format=raw,file=/dev/sdb,cache=none,if=virtio  -m 2048 -usb -device usb-tablet
 ```
 
 La opción `-boot menu=on` nos muestra un menu de inicio al pulsar `F12`y evita que inicie desde `-hda`. Debemos seleccionar `2. Virtio disk ...`.
