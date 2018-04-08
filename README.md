@@ -31,8 +31,7 @@ Una vez finalizado, comprobamos que nos ha creado las carpetas anteriores. Tambi
   ![Carpeta /multibootusb/iso](screenshots/multibootusb-iso.png)
 
 8. Edita el [archivo de configuración de GRUB2](multibootusb/grub/grub.cfg).
-9. Prueba el resultado en una máquina virtual. Yo he utilizado qemu.
-
+9. Prueba el resultado en una máquina virtual. Yo he utilizado qemu. Una introducción al uso de qemu puedes verla [aquí](QEMU.md).
 ```
 qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -drive format=raw,file=/dev/sdb,cache=none,if=virtio  -m 2048 -usb -device usb-tablet
 ```
