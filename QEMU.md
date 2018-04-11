@@ -52,6 +52,13 @@ La opción `-boot menu=on` nos muestra un menu de inicio al pulsar `F12`y evita 
 
 Con esto ya tenemos un entorno completamente funcional para realizar pruebas de la forma más parecida a un entorno real.
 
+## Scripts
+
+Para ahorrar tener que escribir una sentencia tan larga en la shell, a continuación tienes 2 scripts que facilitan la ejecución de máquinas virtuales. Puedes copiarlos a un directorio que esté dentro del $PATH, por ejemplo `/bin`.
+
+- [run-iso](scripts/run-iso)
+- [run-usb](scripts/run-usb)
+
 
 ## Referencias 
 
