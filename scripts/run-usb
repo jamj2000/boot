@@ -3,19 +3,20 @@
 
 if [ $# -eq 0 ]; then
   echo "============================================================================================="
-  echo "Script para ejecutar ISO con QEMU y KVM (necesario tener instalados paquetes qemu y qemu-kvm)"
+  echo "Script para ejecutar USB con QEMU y KVM (necesario tener instalados paquetes qemu y qemu-kvm)"
   echo "============================================================================================="
   echo "Si necesitas un disco duro virtual previo puedes crearlo con qemu-img. Por ejemplo: "
   echo "      qemu-img  create  -f  qcow2  disco.img  20G"
   echo
   echo "Modo de uso: ";
-  echo "      $0  ubuntu.iso"
-  echo "      $0  ubuntu.iso  disco.img "
+  echo "      $0"
+  echo "      $0 disco.img "
   echo "      En este segundo caso pulsar F12 en el inicio para seleccionar dispositivo de arranque."
-  exit 1;
+  echo "Pulsa una tecla para continuar ...";
+  read
 fi
 
-ISO=$1;
-if [ $2 ]; then DISCO="-hda $2 -boot menu=on"; fi
+USB="sdb";
+if [ $1 ]; then DISCO="-hda $1 -boot menu=on"; fi
 
-qemu-system-x86_64 $DISCO -enable-kvm -machine q35,accel=kvm  -cdrom $ISO -m 2048 -usb -device usb-tablet
+sudo qemu-system-x86_64 $DISCO -enable-kvm -machine q35,accel=kvm -drive format=raw,file=/dev/$USB,cache=none,if=virtio  -m 2048 -usb -device usb-tablet
