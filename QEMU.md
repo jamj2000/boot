@@ -62,6 +62,7 @@ Para ahorrar tener que escribir una sentencia tan larga en la shell, a continuac
 
 ## Referencias 
 
+- https://qemu.weilnetz.de/doc/qemu-doc.html
 - https://wiki.archlinux.org/index.php/QEMU
 - https://wiki.gentoo.org/wiki/QEMU/Options
 - https://en.wikibooks.org/wiki/QEMU/Images
