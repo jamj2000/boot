@@ -52,7 +52,7 @@ La opción `-boot menu=on` nos muestra un menu de inicio al pulsar `F12`y evita 
 
 Con esto ya tenemos un entorno completamente funcional para realizar pruebas de la forma más parecida a un entorno real.
 
-> NOTA: Si iniciamos desde `-hda` y queremos tener acceso al contenido del pendrive debemos añadir a `qemu-system-x86_64` la opción `-usb -usbdevice host:0718:0619`, siendo `0718:0619` el idVendor:idProduct del USB, el cual puede verse con la orden `lsusb`. No utilizar los números indicados previamente, es solo un ejemplo.  
+> NOTA: Si iniciamos desde `-hda` y queremos tener acceso al contenido del pendrive debemos añadir la opción `-usb -usbdevice host:0781:5581`, siendo `0781:5581` el idVendor:idProduct del USB, el cual puede verse con la orden `lsusb`. No utilizar los números indicados previamente, es solo un ejemplo.  
 
 ## Scripts
 
