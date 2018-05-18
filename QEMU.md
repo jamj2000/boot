@@ -56,11 +56,11 @@ Con esto ya tenemos un entorno completamente funcional para realizar pruebas de 
 
 ## Scripts
 
-Para ahorrar tener que escribir una sentencia tan larga en la shell, a continuación tienes 2 scripts que facilitan la ejecución de máquinas virtuales. Puedes copiarlos a un directorio que esté dentro del $PATH, por ejemplo `/bin`.
+Para ahorrar tener que escribir una sentencia tan larga en la shell, a continuación tienes 3 scripts que facilitan la ejecución de máquinas virtuales. Puedes copiarlos a un directorio que esté dentro del $PATH, por ejemplo `/bin`.
 
 - [run-iso](scripts/run-iso)
 - [run-usb](scripts/run-usb)
-
+- [run-img](scripts/run-img)
 
 ## Referencias 
 
