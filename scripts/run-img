@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+if [ $# -eq 0 ]; then
+  echo "============================================================================================="
+  echo "Script para ejecutar IMG con QEMU y KVM (necesario tener instalados paquetes qemu y qemu-kvm)"
+  echo "============================================================================================="
+  echo "Si necesitas un disco duro virtual previo puedes crearlo con qemu-img. Por ejemplo: "
+  echo "      qemu-img  create  -f  qcow2  disco.img  20G"
+  echo
+  echo "Modo de uso: ";
+  echo "      $0 disco.img "
+  echo
+  exit 1
+fi
+
+USB="sdb";
+if [ $1 ]; then DISCO="-hda $1"; fi
+
+sudo qemu-system-x86_64 $DISCO -enable-kvm -machine q35,accel=kvm \
+                        -drive format=raw,file=/dev/$USB,cache=none,if=virtio \
+                        -m 2048 -usb -device usb-tablet \
+                        -usb -usbdevice host:0718:0619
