@@ -2,7 +2,7 @@
 
 ## Pasos
 
-**IMPORTANTE**: El pendrive ha de tener formato FAT32 o NTFS. El formato exFAT no está soportado por syslinux.
+**IMPORTANTE**: El pendrive ha de tener formato FAT32 o NTFS, preferiblemente FAT32. El formato exFAT no está soportado por syslinux.
 
 1. Instala aplicación [MultiBootUSB](http://multibootusb.org/).
 2. Introduce un pendrive sin datos, con al menos una partición (suele ser /dev/sdb1)
