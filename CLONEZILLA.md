@@ -38,3 +38,6 @@ Puede suceder que tengamos una partición con Ubuntu u otro linux instalado y qu
 sudo  grub-install  /dev/sda  --root-directory=/mnt
 ```
 
+## Referencias
+
+- https://clonezilla.org/livehd.php
