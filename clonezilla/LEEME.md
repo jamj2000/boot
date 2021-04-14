@@ -1,48 +1,61 @@
 Pasos a seguir para instalar Clonezilla en el disco duro
 ========================================================
 
+A continuación se ofrecen 2 formas de instalar Clonezilla en el disco duro, una para sistemas EFI y otra para MBR. 
 
-1. Iniciar CDLive de Clonezilla.
+En ambos casos se utiliza el GRUB del sistema Linux previo (Ubuntu, Debian, ...) Se hace así para que cuando éste se actualice no se pierda GRUB.
 
-2. Montar partición que va a contener Clonezilla. En el ejemplo es `/dev/sda4`.
+El proceso consiste en sustituir el archivo `/etc/grub.d/40_custom` por el que se ofrece aquí y configurarlo para indicar las particiones de nuestro disco (Partición de sistema de Windows, Partición de sistema de Linux, Partición para imágenes de Clonezilla, ...).
 
-```bash
-sudo su
-mount  /dev/sda4  /mnt
-```
+EFI
+---
+Esta forma es para equipos modernos con EFI. 
 
-3. Copiar archivos de Clonezilla
 
-```bash
-cp  -r  /lib/live/mount/medium/*  /mnt
-```
+Pasos a seguir:
 
-4. Cambiar nombre `/mnt/live` a `/mnt/live-hd`
+Es necesario haber creado previamente una partición ext4 para las imágenes de clonezilla. 
 
-```bash
-mv  /mnt/live  /mnt/live-hd
-```
+1. Iniciamos el sistema Linux previo (Ubuntu, ...)
 
-5. Montar en `/media` el pendrive con los archivos de configuración. En el ejemplo `/dev/sdb1`.
+2. Descargamos la **ISO de Clonezilla** de la página oficial y la copiamos al **directorio raíz** con el nombre **`clonezilla.iso`**.
 
-```bash
-mount  /dev/sdb1  /media
-```
+3. Sustituimos el archivo **`/etc/grub.d/40_custom`** por el disponible en este repositorio.
 
-6. Copiar archivos [`/media/grub.cfg`](grub.cfg) y [`/media/bg.png`](bg.png) a `/mnt/EFI/boot`.
- 
-```bash
-cd  /mnt/EFI/boot
-cp  /media/grub.cfg  /media/bg.png  .
-```
+4. Editamos el archivo anterior para establecer los números de partición adecuados.
 
-7. Instalar grub2  
+5. Actualizamos GRUB  
 
 ```bash
-grub-install  /dev/sda  --root-directory=/mnt 
+sudo  update-grub
 ```
 
-## Información consultada
 
-- http://joaalsai.com/index.php/2017/11/17/creacion-de-un-menu-de-restauracion/
+MBR
+---
+Esta forma es para equipos legacy con MBR. 
 
+Es necesario haber creado previamente una partición ext4 para las imágenes de clonezilla. Además es necesario disponer de otra partición para el sistema Clonezilla.
+
+Pasos a seguir:
+
+1. Iniciamos el sistema Linux previo (Ubuntu, ...)
+
+2. Descargamos el **ZIP de Clonezilla** de la página oficial y lo descomprimimos a la partición del sistema clonezilla.
+
+```bash
+sudo  mount  /dev/sdax  /mnt
+sudo  unzip  clonezilla.zip  -d  /mnt
+sudo  mv  /mnt/live  /mnt/live-hd
+```
+siendo sdax la partición del sistema clonezilla.
+
+3. Sustituimos el archivo **`/etc/grub.d/40_custom`** por el disponible en este repositorio.
+
+4. Editamos el archivo anterior para establecer los números de partición adecuados.
+
+5. Actualizamos GRUB  
+
+```bash
+sudo  update-grub
+```
