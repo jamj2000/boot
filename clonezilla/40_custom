@@ -1,0 +1,102 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+
+#--------------------------------------------------------------------------------
+# USUARIO Y CONTRASEÑA
+set superusers="profesor"
+password profesor continuar
+export superusers
+
+
+#--------------------------------------------------------------------------------
+# VARIABLES DE CONFIGURACIÓN
+# PARTICIONES. 
+# Particiones primarias: 1, 2, 3, 4 
+# Particiones lógicas:   5, 6, ...
+
+# DEFAULT toma valores 0, 1, 2, ... según orden de ENTRADAS. Ver ENTRADAS más abajo.
+
+MOSTRAR_WINDOWS=false   
+MOSTRAR_LINUX=true   
+# ParticionesWindows="sda1"
+#ParticionesWindows="sda1 sda2"
+ParticionesLinux="sda1"
+ParticionClonezilla="sda3"
+ParticionImagenes="dev:///dev/sda4"
+
+#W=1
+L=1
+C=3
+
+# El siguiente código está admitido en Bash pero no en Grub
+#W=${ParticionesWindows[@]:3:1}
+#L=${ParticionesLinux[@]:3:1}
+#C=${ParticionClonezilla[@]:3:1}
+
+#--------------------------------------------------------------------------------
+# Comandos para clonezilla
+RESTORE_WIN="ocs-sr -batch -e1 auto -e2 -t -r -j2 -k -scr -p poweroff restoreparts WINDOWS $ParticionesWindows"
+RESTORE_LIN="ocs-sr -batch -e1 auto -e2 -t -r -j2 -k -scr -p poweroff restoreparts LINUX   $ParticionesLinux"
+CLONE_WIN="ocs-sr -batch -q2 -j2 -rm-win-swap-hib -z1 -i 4096 -sfsck -scs -senc -p poweroff saveparts WINDOWS $ParticionesWindows"
+CLONE_LIN="ocs-sr -batch -q2 -j2                  -z1 -i 4096 -sfsck -scs -senc -p poweroff saveparts LINUX   $ParticionesLinux"
+
+
+#--------------------------------------------------------------------------------
+# ENTRADAS                            
+
+
+if [ "$MOSTRAR_WINDOWS" = true ]; then 
+menuentry "RESTAURAR Windows"  --users "" {
+  set root=(hd0,$C)
+  linux /live-hd/vmlinuz boot=live union=overlay username=user config components quiet noswap nolocales edd=on nomodeset ocs_repository=\"$ParticionImagenes\" ocs_live_run=\"$RESTORE_WIN\" keyboard-layouts=es ocs_live_batch=\"yes\" locales=es_ES.UTF-8 ip=frommedia nosplash live-media-path=/live-hd bootfrom=/dev/$ParticionClonezilla toram=filesystem.squashfs
+  initrd /live-hd/initrd.img
+}
+fi # MOSTRAR_WINDOWS
+
+
+if [ "$MOSTRAR_LINUX" = true ]; then 
+menuentry "RESTAURAR Linux"  --users "" {
+  set root=(hd0,$C)
+  linux /live-hd/vmlinuz boot=live union=overlay username=user config components quiet noswap nolocales edd=on nomodeset ocs_repository=\"$ParticionImagenes\" ocs_live_run=\"$RESTORE_LIN\" keyboard-layouts=es ocs_live_batch=\"yes\" locales=es_ES.UTF-8 ip=frommedia nosplash live-media-path=/live-hd bootfrom=/dev/$ParticionClonezilla toram=filesystem.squashfs
+  initrd /live-hd/initrd.img
+}
+fi # MOSTRAR_LINUX
+
+
+
+
+if [ "$MOSTRAR_WINDOWS" = true ]; then 
+menuentry "CLONAR Windows" --users "" {
+  set root=(hd0,$C)
+  linux /live-hd/vmlinuz boot=live union=overlay username=user config components quiet noswap nolocales edd=on nomodeset ocs_repository=\"$ParticionImagenes\" ocs_live_run=\"$CLONE_WIN\" keyboard-layouts=es ocs_live_batch=\"yes\" locales=es_ES.UTF-8 ip=frommedia nosplash live-media-path=/live-hd bootfrom=/dev/$ParticionClonezilla toram=filesystem.squashfs
+  initrd /live-hd/initrd.img
+}
+fi # MOSTRAR_WINDOWS
+
+
+if [ "$MOSTRAR_LINUX" = true ]; then 
+menuentry "CLONAR Linux"  --users "" {
+  set root=(hd0,$C)
+  linux /live-hd/vmlinuz boot=live union=overlay username=user config components quiet noswap nolocales edd=on nomodeset ocs_repository=\"$ParticionImagenes\" ocs_live_run=\"$CLONE_LIN\" keyboard-layouts=es ocs_live_batch=\"yes\" locales=es_ES.UTF-8 ip=frommedia nosplash live-media-path=/live-hd bootfrom=/dev/$ParticionClonezilla toram=filesystem.squashfs
+  initrd /live-hd/initrd.img
+}
+fi # MOSTRAR_LINUX
+
+
+
+
+menuentry "Iniciar Clonezilla" --unrestricted {
+  set root=(hd0,$C)
+  linux /live-hd/vmlinuz boot=live union=overlay username=user config components quiet noswap nolocales edd=on nomodeset ocs_live_run=\"ocs-live-general\" ocs_live_extra_param=\"\" keyboard-layouts=es ocs_live_batch=\"no\" locales=es_ES.UTF-8 ip=frommedia nosplash live-media-path=/live-hd bootfrom=/dev/$ParticionClonezilla toram=filesystem.squashfs
+  initrd /live-hd/initrd.img
+} 
+
+
+
+menuentry "Reiniciar" --unrestricted { reboot }
+
+
+menuentry "Apagar" --unrestricted { halt }
